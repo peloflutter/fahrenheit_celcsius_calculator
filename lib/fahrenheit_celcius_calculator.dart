@@ -8,7 +8,7 @@ class FahrenheitCelciusCalculator extends StatefulWidget {
 }
 
 class _FahrenheitCelciusCalculator extends State<FahrenheitCelciusCalculator> {
-  String _input;
+  // String _input;
   String _displayFahrenheitLong;
   String _displayCelciusLong;
   String _displayFahrenheitShort;
@@ -22,11 +22,15 @@ class _FahrenheitCelciusCalculator extends State<FahrenheitCelciusCalculator> {
 
   _FahrenheitCelciusCalculator() {
     debugPrint("c'tor _FahrenheitCelciusCalculator");
-    _input = '';
+    // _input = '';
     _displayFahrenheitLong = '';
     _displayCelciusLong = '';
     _displayFahrenheitShort = '';
     _displayCelciusShort = '';
+
+    // just for testing
+    _degreeFahrenheit = 13.5;
+    _degreeCelcius = 44.65;
 
     _controller = TextEditingController();
   }
@@ -85,6 +89,11 @@ class _FahrenheitCelciusCalculator extends State<FahrenheitCelciusCalculator> {
                     onPressed: _onPressed,
                     child: Text('Calculate'),
                   ),
+                  Padding(padding: EdgeInsets.all(2.0)),
+                  RaisedButton(
+                    onPressed: _onReset,
+                    child: Text('Reset'),
+                  ),
                   Padding(padding: EdgeInsets.all(10.0)),
                   Row(children: <Widget>[
                     Container(
@@ -95,12 +104,12 @@ class _FahrenheitCelciusCalculator extends State<FahrenheitCelciusCalculator> {
                               Padding(
                                   padding: EdgeInsets.all(2.0),
                                   child: Text(_displayFahrenheitLong,
-                                      style: TextStyle(fontSize: 14.0))),
+                                      style: TextStyle(fontSize: 16.0))),
                               Padding(padding: EdgeInsets.all(10.0)),
                               Padding(
                                   padding: EdgeInsets.all(2.0),
                                   child: Text(_displayCelciusLong,
-                                      style: TextStyle(fontSize: 14.0)))
+                                      style: TextStyle(fontSize: 16.0)))
                             ])),
                     Expanded(
                         child: Column(
@@ -109,12 +118,12 @@ class _FahrenheitCelciusCalculator extends State<FahrenheitCelciusCalculator> {
                           Padding(
                               padding: EdgeInsets.all(2.0),
                               child: Text(_displayFahrenheitShort,
-                                  style: TextStyle(fontSize: 20.0))),
+                                  style: TextStyle(fontSize: 16.0))),
                           Padding(padding: EdgeInsets.all(10.0)),
                           Padding(
                               padding: EdgeInsets.all(2.0),
                               child: Text(_displayCelciusShort,
-                                  style: TextStyle(fontSize: 20.0))),
+                                  style: TextStyle(fontSize: 16.0))),
                         ])),
                   ])
                 ])));
@@ -122,25 +131,49 @@ class _FahrenheitCelciusCalculator extends State<FahrenheitCelciusCalculator> {
 
   void _increment() {
     debugPrint('... _increment');
+
+    _degreeInput++;
   }
 
   void _decrement() {
     debugPrint('... _decrement');
+
+    _degreeInput--;
   }
 
   void _onPressed() {
     debugPrint('... _onPressed');
 
     String input = _controller.text;
+    _degreeInput = int.parse(input);
+
+    _degreeFahrenheit = _fahrenheitToCelcius(_degreeInput);
+    _degreeCelcius = _celciusToFahrenheit(_degreeInput);
 
     setState(() {
-      // ToDo: Verechnung von Fahrenheit und Celcius
-      _degreeInput = int.parse(input);
-
-      _displayFahrenheitLong = 'Boahh, I love $input  Fahrenheit';
-      _displayCelciusLong = 'Boahh, I love $input Celcius';
-      _displayFahrenheitShort = '$input  Fahrenheit';
-      _displayCelciusShort = '$input Celcius';
+      _displayFahrenheitLong = '$_degreeInput °F in Celcius:';
+      _displayCelciusLong = '$_degreeInput °F in Fahrenheit:';
+      _displayFahrenheitShort = '$_degreeFahrenheit °F';
+      _displayCelciusShort = '$_degreeCelcius °C';
     });
   }
+
+  void _onReset() {
+    debugPrint('... _onReset');
+
+    _controller.text = '';
+
+    setState(() {
+      _degreeInput = 0.0;
+
+      _displayFahrenheitLong = '';
+      _displayCelciusLong = '';
+      _displayFahrenheitShort = '';
+      _displayCelciusShort = '';
+    });
+  }
+
+  num _fahrenheitToCelcius(num fahrenheit) => (fahrenheit - 32) * 5 / 9;
+
+  num _celciusToFahrenheit(num celcius) => celcius * 9 / 5 + 32;
 }
