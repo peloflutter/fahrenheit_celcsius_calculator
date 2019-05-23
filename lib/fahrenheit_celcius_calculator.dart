@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-// ToDo: Eingabe nur für numerische Werte erlauben !!!
-
-// ToDo: Double-Werte nur auf 2 Stellen nach dem Komma anzeigen !!!
-
-// ToDo: Wechesel zwischen Landscape- und Portrait-Modus crashed !!!
+/*
+*  Known Bugs: Change between Landscape- und Portrait-Mode crashes
+*/
 
 class FahrenheitCelciusCalculator extends StatefulWidget {
   @override
@@ -12,7 +10,6 @@ class FahrenheitCelciusCalculator extends StatefulWidget {
 }
 
 class _FahrenheitCelciusCalculator extends State<FahrenheitCelciusCalculator> {
-  // String _input;
   String _displayFahrenheitLong;
   String _displayCelciusLong;
   String _displayFahrenheitShort;
@@ -28,16 +25,12 @@ class _FahrenheitCelciusCalculator extends State<FahrenheitCelciusCalculator> {
 
   _FahrenheitCelciusCalculator() {
     debugPrint("c'tor _FahrenheitCelciusCalculator");
-    // _input = '';
     _displayFahrenheitLong = '';
     _displayCelciusLong = '';
     _displayFahrenheitShort = '';
     _displayCelciusShort = '';
 
-    // just for testing
-    _degreeInput = 0.0;
-    _degreeFahrenheit = 13.5;
-    _degreeCelcius = 44.65;
+    _degreeInput = 20.0;
 
     String pattern = r'^[0-9]*$';
     _exp = RegExp(pattern);
@@ -142,25 +135,29 @@ class _FahrenheitCelciusCalculator extends State<FahrenheitCelciusCalculator> {
   void _increment() {
     debugPrint('... _increment');
     _degreeInput++;
+    _doCalculation(_degreeInput);
   }
 
   void _decrement() {
     debugPrint('... _decrement');
     _degreeInput--;
+    _doCalculation(_degreeInput);
   }
 
   void _onPressed() {
     debugPrint('... _onPressed');
 
     String input = _controller.text;
-
     if (input == '') {
-      _doCalculation(20.0);
+      _degreeInput = 20.0;
+      // _controller.text = '20';
+      _doCalculation(_degreeInput);
     } else if (!_exp.hasMatch(input)) {
       _showDialog();
       _doReset();
     } else {
-      _doCalculation(double.parse(input));
+      _degreeInput = double.parse(input);
+      _doCalculation(_degreeInput);
     }
   }
 
@@ -174,7 +171,7 @@ class _FahrenheitCelciusCalculator extends State<FahrenheitCelciusCalculator> {
     _controller.text = '';
 
     setState(() {
-      _degreeInput = 0.0;
+      _degreeInput = 20.0;
 
       _displayFahrenheitLong = '';
       _displayCelciusLong = '';
@@ -189,10 +186,11 @@ class _FahrenheitCelciusCalculator extends State<FahrenheitCelciusCalculator> {
     _degreeCelcius = _celciusToFahrenheit(_degreeInput);
 
     setState(() {
+      _controller.text = _degreeInput.toStringAsFixed(0);
       _displayFahrenheitLong = '$_degreeInput °F in Celcius:';
-      _displayCelciusLong = '$_degreeInput °F in Fahrenheit:';
-      _displayFahrenheitShort = '$_degreeFahrenheit °F';
-      _displayCelciusShort = '$_degreeCelcius °C';
+      _displayCelciusLong = '$_degreeInput °C in Fahrenheit:';
+      _displayFahrenheitShort = '${_degreeFahrenheit.toStringAsFixed(2)} °C';
+      _displayCelciusShort = '${_degreeCelcius.toStringAsFixed(2)} °F';
     });
   }
 
@@ -209,7 +207,6 @@ class _FahrenheitCelciusCalculator extends State<FahrenheitCelciusCalculator> {
               title: new Text("Wrong Input"),
               content: new Text("Please enter a valid integer!"),
               actions: <Widget>[
-                // usually buttons at the bottom of the dialog
                 new FlatButton(
                   child: new Text("Close"),
                   onPressed: () {
