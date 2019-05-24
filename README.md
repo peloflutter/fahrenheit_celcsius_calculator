@@ -1,8 +1,8 @@
-# Fahrenheit Celcius Calculator
+# Fahrenheit Celsius Calculator
 
 ## Eine einfache Flutter-App
 
-Ein Rechner zum Umrechnen von Fahrenheit in Celcius und umgekehrt.
+Ein Rechner zum Umrechnen von Fahrenheit in Celsius und umgekehrt.
 
 Ein beliebiger Wert (Fahrenheit oder Celsius) wird nach der Eingabe bidirektional
 in Fahrenheit und Celsius umgerechnet.
@@ -15,5 +15,5 @@ Die Oberfläche der App sieht so aus:
 
 ## Klasse ``StatefulWidget``
 
-Die Implementierung des App hat das Ziel, die Arbeitsweise der Klasse ``StatefulWidget`` zu verdeutlichen. Studieren Sie am vorliegenden Quellcode die beiden Klassen ``FahrenheitCelciusCalculator`` (Spezialisierung der Klasse ``StatefulWidget``) und ``_FahrenheitCelciusCalculator``  (Spezialisierung der Klasse ``State<FahrenheitCelciusCalculator>``). Die zu überschreibenden Methoden ``createState`` bzw. ``build`` und der Aufruf der ``setState``-Methode stellen den Kern der Implementierung dar.
+Die Implementierung des App hat das Ziel, die Arbeitsweise der Klasse ``StatefulWidget`` zu verdeutlichen. Studieren Sie am vorliegenden Quellcode die beiden Klassen ``FahrenheitCelsiusCalculator`` (Spezialisierung der Klasse ``StatefulWidget``) und ``_FahrenheitCelsiusCalculator``  (Spezialisierung der Klasse ``State<FahrenheitCelsiusCalculator>``). Die zu überschreibenden Methoden ``createState`` bzw. ``build`` und der Aufruf der ``setState``-Methode stellen den Kern der Implementierung dar.
 

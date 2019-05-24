@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'fahrenheit_celcius_calculator.dart';
+import 'fahrenheit_celsius_calculator.dart';
 
 void main() {
   debugPaintSizeEnabled = false;
@@ -14,6 +14,6 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primarySwatch: Colors.amber),
-        home: FahrenheitCelciusCalculator());
+        home: FahrenheitCelsiusCalculator());
   }
 }

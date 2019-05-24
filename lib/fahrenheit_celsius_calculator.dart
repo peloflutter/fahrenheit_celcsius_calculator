@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class FahrenheitCelciusCalculator extends StatefulWidget {
+class FahrenheitCelsiusCalculator extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _FahrenheitCelciusCalculator();
+  State<StatefulWidget> createState() => _FahrenheitCelsiusCalculator();
 }
 
-class _FahrenheitCelciusCalculator extends State<FahrenheitCelciusCalculator> {
+class _FahrenheitCelsiusCalculator extends State<FahrenheitCelsiusCalculator> {
   String _displayFahrenheitLong;
   String _displayCelciusLong;
   String _displayFahrenheitShort;
@@ -34,7 +34,7 @@ class _FahrenheitCelciusCalculator extends State<FahrenheitCelciusCalculator> {
     _controller = TextEditingController();
   }
 
-  // conversion Fahrenheit => Celcius and vice versa
+  // conversion Fahrenheit => Celsius and vice versa
   num _fahrenheitToCelcius(num fahrenheit) => (fahrenheit - 32) * 5 / 9;
   num _celciusToFahrenheit(num celcius) => celcius * 9 / 5 + 32;
 
@@ -99,7 +99,7 @@ class _FahrenheitCelciusCalculator extends State<FahrenheitCelciusCalculator> {
 
     return Scaffold(
         appBar: new AppBar(
-          title: new Text('Fahrenheit Celcius Calculator'),
+          title: new Text('Fahrenheit Celsius Calculator'),
         ),
         body: Container(
             margin: EdgeInsets.all(10.0),
@@ -181,7 +181,7 @@ class _FahrenheitCelciusCalculator extends State<FahrenheitCelciusCalculator> {
 
     setState(() {
       _controller.text = _degreeInput.toStringAsFixed(0);
-      _displayFahrenheitLong = '$_degreeInput °F in Celcius:';
+      _displayFahrenheitLong = '$_degreeInput °F in Celsius:';
       _displayCelciusLong = '$_degreeInput °C in Fahrenheit:';
       _displayFahrenheitShort = '${_degreeFahrenheit.toStringAsFixed(2)} °C';
       _displayCelciusShort = '${_degreeCelcius.toStringAsFixed(2)} °F';
