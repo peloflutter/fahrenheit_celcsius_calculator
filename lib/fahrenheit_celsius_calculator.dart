@@ -19,7 +19,7 @@ class _FahrenheitCelsiusCalculator extends State<FahrenheitCelsiusCalculator> {
 
   TextEditingController _controller;
 
-  _FahrenheitCelciusCalculator() {
+  _FahrenheitCelsiusCalculator() {
     debugPrint("c'tor _FahrenheitCelciusCalculator");
     _displayFahrenheitLong = '';
     _displayCelciusLong = '';
